@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+  <title>Calculate BMI</title>
+  <style>
+    #app {
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+      background-image: radial-gradient(#afa, #aaf);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    身高(公尺): <input type="number" v-model="height" />
+    <br />
+    體重(公斤): <input type="number" v-model="weight" />
+    <br />
+
+    <p>BMI: <span>{{bmi}}</span></p>
+    <p>{{compare_bmi}}</p>
+  </div>
+</body>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      height: 1.6,
+      weight: 60,
+      average_bmi: 20,
+    },
+    computed: {
+      bmi: function () {
+        return (this.weight / (this.height * this.height)).toFixed(2);
+      },
+      compare_bmi: function () {
+        if (this.bmi > this.average_bmi) return "bigger than average bmi";
+        else return "less than average bmi";
+      },
+    },
+  });
+</script>
+
+</html>
